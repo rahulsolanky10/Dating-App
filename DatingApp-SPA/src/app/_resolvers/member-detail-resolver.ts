@@ -7,18 +7,20 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class MemberDetailResolver implements Resolve<User>{
-    constructor(private userService: UserService, private alertify: AlertifyService, private router: Router){}
+export class MemberDetailResolver implements Resolve<User> {
+  constructor(
+    private userService: UserService,
+    private alertify: AlertifyService,
+    private router: Router
+  ) {}
 
-    resolve(route: ActivatedRouteSnapshot): Observable<User>{
-
-        return this.userService.getUser(route.params['id']).pipe(
-            catchError(error => {
-                this.alertify.error('Problem in retrieving data');
-                this.router.navigate(['/members']);
-                return of(null);
-            })
-        );
-
-    }
+  resolve(route: ActivatedRouteSnapshot): Observable<User> {
+    return this.userService.getUser(route.params['id']).pipe(
+      catchError((error) => {
+        this.alertify.error('Problem in retrieving data');
+        this.router.navigate(['/members']);
+        return of(null);
+      })
+    );
+  }
 }
