@@ -1,9 +1,7 @@
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,   ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
@@ -27,6 +25,13 @@ import { MemberEditResolver } from './_resolvers/member-edit-resolver';
 import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
+import { TabsModule} from 'ngx-bootstrap/tabs';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { DatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimeagoModule } from 'ngx-timeago';
+
+
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -55,12 +60,16 @@ export class CustomHammerConfig extends HammerGestureConfig {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    TimeagoModule.forRoot(),
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     NgxGalleryModule,
     FileUploadModule,
+    DatepickerModule,
+    BsDatepickerModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     JwtModule.forRoot({
       config: {
