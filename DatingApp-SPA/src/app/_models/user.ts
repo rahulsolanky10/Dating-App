@@ -2,7 +2,7 @@ import { Photo } from './photo';
 
 export interface User {
     id: number;
-    username: string;
+    userName: string;
     age: number;
     gender: string;
     knownsAs: string;
@@ -15,5 +15,6 @@ export interface User {
     interests?: string;
     lookingFor?: string;
     photos?: Photo[];
+    roles?: string[];
 
 }

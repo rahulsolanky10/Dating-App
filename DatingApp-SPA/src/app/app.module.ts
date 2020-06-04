@@ -1,5 +1,6 @@
 import { BrowserModule, HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgModule } from '@angular/core';
 import { FormsModule,   ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
@@ -35,6 +36,12 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ListsResolver } from './_resolvers/lists.resolver';
 import { MessagesResolver } from './_resolvers/messages-resolver';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { HasRoleDirective } from './_directives/hasRole.directive';
+import { AdminService } from './_services/admin.service';
+import { UserManagementComponent } from './admin/user-mangement/user-mangement.component';
+import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
+
 
 
 
@@ -62,7 +69,11 @@ export class CustomHammerConfig extends HammerGestureConfig {
     MemberDetailComponent,
     MemberEditComponent,
     PhotoEditorComponent,
-    MemberMessagesComponent
+    MemberMessagesComponent,
+    AdminPanelComponent,
+    UserManagementComponent,
+    RolesModalComponent,
+    HasRoleDirective
   ],
   imports: [
     BrowserModule,
@@ -72,6 +83,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     TabsModule.forRoot(),
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
+    ModalModule.forRoot(),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -91,6 +103,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
 
   providers: [
     AuthService,
+    AdminService,
     ErrorInterceptorProvider,
     MemberDetailResolver,
     MemberListResolver,
@@ -100,6 +113,10 @@ export class CustomHammerConfig extends HammerGestureConfig {
     MessagesResolver,
     { provide: HAMMER_GESTURE_CONFIG, useClass: CustomHammerConfig}
   ],
+  entryComponents: [
+  RolesModalComponent
+  ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

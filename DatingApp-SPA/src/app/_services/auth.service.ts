@@ -17,9 +17,8 @@ export class AuthService {
   photoUrl = new BehaviorSubject<string>('../../assets/user.png');
   currentPhotoUrl = this.photoUrl.asObservable();
   constructor(private http: HttpClient) {}
-  changeMemberPhoto(photoUrl: string){
-   this.photoUrl.next(photoUrl);
-
+  changeMemberPhoto(photoUrl: string) {
+    this.photoUrl.next(photoUrl);
   }
   login(model: any) {
     return this.http.post(this.baseUrl + 'login', model).pipe(
@@ -42,5 +41,17 @@ export class AuthService {
   loggedIn() {
     const token = localStorage.getItem('token');
     return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  roleMatch(allowedRoles): boolean {
+    let isMatch = false;
+    const userRoles = this.decodeToken.role as Array<string>;
+    allowedRoles.forEach((element) => {
+      if (userRoles.includes(element)) {
+        isMatch = true;
+        return;
+      }
+    });
+    return isMatch;
   }
 }
