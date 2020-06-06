@@ -41,6 +41,7 @@ import { HasRoleDirective } from './_directives/hasRole.directive';
 import { AdminService } from './_services/admin.service';
 import { UserManagementComponent } from './admin/user-mangement/user-mangement.component';
 import { RolesModalComponent } from './admin/roles-modal/roles-modal.component';
+import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 
 
 
@@ -73,6 +74,7 @@ export class CustomHammerConfig extends HammerGestureConfig {
     AdminPanelComponent,
     UserManagementComponent,
     RolesModalComponent,
+    PhotoManagementComponent,
     HasRoleDirective
   ],
   imports: [

@@ -20,7 +20,6 @@ export class UserManagementComponent implements OnInit {
   }
 
   getUsersWithRoles() {
-    debugger;
     this.adminService.getUsersWithRoles().subscribe((users: User[]) => {
       this.users = users;
     }, error => {

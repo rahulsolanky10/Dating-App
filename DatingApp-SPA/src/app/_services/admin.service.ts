@@ -12,26 +12,22 @@ export class AdminService {
   constructor(private http: HttpClient) {}
 
   getUsersWithRoles() {
-    debugger;
-    return this.http.get(this.baseUrl + 'admin/userWithRoles');
+    return this.http.get(this.baseUrl + 'admin/userWithRoles/');
   }
 
   updateUserRoles(user: User, roles: {}) {
-    return this.http.post(
-      this.baseUrl + 'admin/editRoles/' + user.userName,
-      roles
-    );
+    return this.http.post(this.baseUrl + 'admin/editRoles/' + user.userName, roles );
   }
 
-  // getPhotosForApproval() {
-  //   return this.http.get(this.baseUrl + 'admin/photosForModeration');
-  // }
+  getPhotosForApproval() {
+    return this.http.get(this.baseUrl + 'admin/photosForModeration/');
+  }
 
-  // approvePhoto(photoId) {
-  //   return this.http.post(this.baseUrl + 'admin/approvePhoto' + photoId, {});
-  // }
+  approvePhoto(photoId) {
+    return this.http.post(this.baseUrl + 'admin/approvePhoto/' + photoId, {});
+  }
 
-  // rejectPhoto(photoId) {
-  //   return this.http.post(this.baseUrl + 'admin/rejectPhoto/' + photoId, {});
-  // }
+  rejectPhoto(photoId) {
+    return this.http.post(this.baseUrl + 'admin/rejectPhoto/' + photoId, {});
+  }
 }

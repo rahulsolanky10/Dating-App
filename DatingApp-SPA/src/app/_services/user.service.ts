@@ -96,8 +96,7 @@ export class UserService {
       params = params.append('pageSize', itemsPerPage);
     }
 
-    return this.http
-      .get<Message[]>(this.baseUrl + 'users/' + id + '/messages', {
+    return this.http.get<Message[]>(this.baseUrl + 'users/' + id + '/messages', {
         observe: 'response',
         params,
       })
@@ -115,25 +114,15 @@ export class UserService {
       );
   }
   getMessageThread(id: number, recipientId: number) {
-    return this.http.get<Message[]>(
-      this.baseUrl + 'users/' + id + '/messages/thread/' + recipientId
-    );
+    return this.http.get<Message[]>(this.baseUrl + 'users/' + id + '/messages/thread/' + recipientId);
   }
   sendMessage(id: number, message: Message) {
     return this.http.post(this.baseUrl + 'users/' + id + '/messages', message);
   }
   deleteMessage(id: number, userId: number) {
-    return this.http.post(
-      this.baseUrl + 'users/' + userId + '/messages/' + id,
-      {}
-    );
+    return this.http.post(this.baseUrl + 'users/' + userId + '/messages/' + id, {});
   }
   markAsRead(userId: number, messageId: number) {
-    this.http
-      .post(
-        this.baseUrl + 'users/' + userId + '/messages/' + messageId + '/read',
-        {}
-      )
-      .subscribe();
+    this.http.post(this.baseUrl + 'users/' + userId + '/messages/' + messageId + '/read', {}) .subscribe();
   }
 }
